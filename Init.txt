@@ -1,0 +1,19 @@
+1340 --> MDP DB
+npx create-nx-workspace@latest
+--integrated with react
+--Repo Planyzer
+--Appli ui
+cd .\planyzer\
+npm i @nrwl/nest
+npx nx generate @nrwl/nest:application api
+
+
+Lancer l'API : nx serve api   (http://localhost:3333/api)
+
+// En splittant les terminaux
+Lancer l'UI react : npm run start (http://localhost:4200)
+
+// Prépare une librairie commune, pour partager les types.
+nx g @nrwl/node:lib shared-types
+
+
