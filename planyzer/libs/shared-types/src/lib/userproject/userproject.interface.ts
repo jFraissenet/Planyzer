@@ -1,10 +1,9 @@
 export interface UserProject {
-    id: number;
-  
-    projectId: number;
+  id: number;
 
-    userId: number;
+  projectId: number;
 
-    rlId: number;
-  
-  }
+  userId: number;
+
+  rlId: number;
+}

@@ -4,5 +4,7 @@ export interface Project {
 
   title: string;
 
+  //comment: string;
+
   //users: UserProject[];
 }

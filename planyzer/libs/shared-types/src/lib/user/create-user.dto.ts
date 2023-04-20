@@ -2,9 +2,7 @@ import { IsEmail, MinLength } from 'class-validator';
 
 import { User } from './user.interface';
 
-export class CreateUserDto
-  implements Pick<User, 'username' | 'psw' | 'mail'>
-{
+export class CreateUserDto implements Pick<User, 'username' | 'psw' | 'mail'> {
   @MinLength(1)
   username!: string;
 
