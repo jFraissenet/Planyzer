@@ -3,7 +3,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { UserModule } from './user/user.module';
+import { FeatureModule } from './feature/feature.module';
 import { ProjectModule } from './project/project.module';
+
+import { ProjectFeatureModule } from './projectfeature/projectfeature.module';
+import { UserProjectFeatureModule } from './userprojectfeature/userprojectfeature.module';
 
 @Module({
   imports: [
@@ -18,12 +22,15 @@ import { ProjectModule } from './project/project.module';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         autoLoadEntities: true,
-        //synchronize: true,
+        synchronize: true,
       }),
       inject: [ConfigService],
     }),
     UserModule,
     ProjectModule,
+    FeatureModule,
+    ProjectFeatureModule,
+    UserProjectFeatureModule,
   ],
   controllers: [],
   providers: [],
