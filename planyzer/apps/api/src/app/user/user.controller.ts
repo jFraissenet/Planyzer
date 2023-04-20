@@ -8,44 +8,40 @@ import { UserService } from './user.service';
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
-    constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
-    /**
-     * 
-     * @returns All users
-     */
-    @Get()
-    all(): Promise<User[]> {
-      return this.userService.getAll_usr();
-    }
+  /**
+   *
+   * @returns All users
+   */
+  @Get()
+  all(): Promise<User[]> {
+    return this.userService.getAll_usr();
+  }
 
-    /**
-     * 
-     * @param id User id
-     * @returns The user
-     */
-    @Get(':id')
-    one(@Param('id') id: number): Promise<User> {
-        return this.userService.getOne_usr(id);
-    }
-
+  /**
+   *
+   * @param id User id
+   * @returns The user
+   */
+  @Get(':id')
+  one(@Param('id') id: number): Promise<User> {
+    return this.userService.getOne_usr(id);
+  }
 }
-
 
 // Add controller tag on swagger
 @ApiTags('Roles')
 @Controller('roles')
 export class RoleController {
-    constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
-    /**
-     * 
-     * @returns All users
-     */
-    @Get()
-    all(): Promise<Role[]> {
-      return this.userService.getAll_rl();
-    }
-
-
+  /**
+   *
+   * @returns All users
+   */
+  @Get()
+  all(): Promise<Role[]> {
+    return this.userService.getAll_rl();
+  }
 }
