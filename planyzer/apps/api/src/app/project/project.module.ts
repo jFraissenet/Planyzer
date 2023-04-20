@@ -10,12 +10,13 @@ import {
   MiddlewareConsumer,
 } from '@nestjs/common';
 import { UserProject } from './entity/userproject.entity';
+import { ProjectType } from './entity/projecttype.entity';
 import { ProjectController, UserProjectController } from './project.controller';
 
 import { LoggerMiddleware } from './project.middleware';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Project, UserProject])],
+  imports: [TypeOrmModule.forFeature([Project, UserProject, ProjectType])],
   providers: [ProjectService],
   controllers: [ProjectController, UserProjectController],
 })

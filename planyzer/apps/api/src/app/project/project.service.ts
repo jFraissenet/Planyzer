@@ -1,12 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, UpdateQuery, UpdateResult } from 'typeorm';
+import { Repository } from 'typeorm';
 
 import { CreateProjectDto } from '@planyzer/shared-types';
 import { Project } from './entity/project.entity';
 
 import { CreateUserProjectDto } from '@planyzer/shared-types';
 import { UserProject } from './entity/userproject.entity';
+
+/*
+import { CreateProjectTypeDto } from '@planyzer/shared-types';
+import { ProjectType } from './entity/projecttype.entity';
+*/
 
 @Injectable()
 export class ProjectService {
@@ -28,7 +33,13 @@ export class ProjectService {
     const entity = this.projectrepository.find({
       // 2 levels of depth
       // Join FROM Project --> UserProject --> User
-      relations: ['usersproject', 'usersproject.user', 'usersproject.rl'],
+      relations: [
+        'projectType',
+        'usersProject',
+        'usersProject.user',
+        'usersProject.rl',
+        'projectFeatures',
+      ],
     });
     return entity;
   }
@@ -38,9 +49,11 @@ export class ProjectService {
       where: {
         id: id,
       },
-      relations: {
-        usersproject: true,
-      },
+      relations: [
+        'usersProject',
+        'projectFeatures',
+        'projectFeatures.usersProjectFeature',
+      ],
     });
     return entity;
   }
@@ -49,6 +62,10 @@ export class ProjectService {
     this.projectrepository.update(id, updateddto);
 
     return this.getOnePr(id);
+  }
+
+  deleteProject(id: number): void {
+    this.projectrepository.delete(id);
   }
 
   /* USER PROJECT */
