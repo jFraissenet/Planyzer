@@ -17,3 +17,11 @@ Lancer l'UI react : npm run start (http://localhost:4200)
 nx g @nrwl/node:lib shared-types
 
 
+
+
+npm  install --save-dev @nrwl/react-native
+npx nx g @nrwl/react-native:app planyzer-mobile
+
+
+
+
