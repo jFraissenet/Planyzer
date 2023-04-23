@@ -11,6 +11,7 @@
     "react-native-svg": "*",
     "metro-config": "*",
     "@react-native-async-storage/async-storage": "*",
-    "axios": "*"
+    "axios": "*",
+    "@rneui/themed": "*"
   }
 }

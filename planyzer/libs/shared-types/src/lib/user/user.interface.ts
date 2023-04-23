@@ -7,3 +7,15 @@ export interface User {
 
   psw: string;
 }
+
+export interface SignupRsp {
+  readonly mail: string;
+}
+export interface LoginRsp {
+  readonly token: string;
+}
+
+export interface LoginAnswer {
+  mail: string;
+  psw: string;
+}

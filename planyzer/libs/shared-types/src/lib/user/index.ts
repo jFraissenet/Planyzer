@@ -1,2 +1,2 @@
 export { CreateUserDto } from './create-user.dto';
-export { User } from './user.interface';
+export { User, SignupRsp, LoginRsp, LoginAnswer } from './user.interface';
