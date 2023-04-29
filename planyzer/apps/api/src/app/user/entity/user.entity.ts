@@ -2,7 +2,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -25,6 +24,13 @@ export class User implements UserInterface {
 
   @Column()
   psw: string;
+
+  @Column({
+    type: 'text',
+    unique: true,
+    nullable: true,
+  })
+  refreshToken!: string | null;
 
   @Column()
   @CreateDateColumn()

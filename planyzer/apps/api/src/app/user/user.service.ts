@@ -1,20 +1,28 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  forwardRef,
+  Inject,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PasswordHasherService } from './auth/psw-hasher.service';
 import { JwtService } from '@nestjs/jwt';
 
-import { CreateUserDto, LoginRsp } from '@planyzer/shared-types';
+import { CreateUserDto, LoginRsp, UpdateUserDto } from '@planyzer/shared-types';
 import { SignupRsp } from '@planyzer/shared-types';
 
 import { User } from './entity/user.entity';
 import { Role } from './entity/role.entity';
 import { LogginDto } from 'libs/shared-types/src/lib/user/create-user.dto';
 import { jwtConstants } from './auth/jwt.constants';
+//import { AuthService } from '../auth/auth.service';
+//import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class UserService {
   constructor(
+    //@Inject(forwardRef(() => AuthService)) private usersService: AuthService,
     @InjectRepository(User) private readonly userrepository: Repository<User>,
     @InjectRepository(Role) private readonly rolerepository: Repository<Role>,
     private hasherService: PasswordHasherService,
@@ -43,6 +51,16 @@ export class UserService {
   getAll_rl(): Promise<Role[]> {
     const entity = this.rolerepository.find();
     return entity;
+  }
+
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+    const entity = this.userrepository.update(id, updateUserDto);
+    return this.getOne_usr(id);
+  }
+
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const newUser = this.userrepository.create(createUserDto);
+    return this.userrepository.save(newUser);
   }
 
   async create_usr(doc: CreateUserDto): Promise<SignupRsp> {
@@ -99,5 +117,14 @@ export class UserService {
     } else {
       throw new UnauthorizedException(`Invalid credentials`);
     }
+  }
+
+  async findBymail(mail: string): Promise<User> {
+    const entity = this.userrepository.findOne({
+      where: {
+        mail: mail,
+      },
+    });
+    return entity;
   }
 }

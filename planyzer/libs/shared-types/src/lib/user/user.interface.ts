@@ -6,6 +6,8 @@ export interface User {
   mail: string;
 
   psw: string;
+
+  refreshToken: string;
 }
 
 export interface SignupRsp {

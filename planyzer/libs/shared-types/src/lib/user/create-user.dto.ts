@@ -15,6 +15,9 @@ export class CreateUserDto implements Pick<User, 'username' | 'psw' | 'mail'> {
   @ApiProperty({ example: 'pseudo@gmail.com' })
   @IsEmail()
   mail!: string;
+
+  // @ApiProperty({ example: '' })
+  //refreshToken!: string;
 }
 
 export class LogginDto implements Pick<User, 'psw' | 'mail'> {
@@ -25,4 +28,6 @@ export class LogginDto implements Pick<User, 'psw' | 'mail'> {
   @ApiProperty({ example: 'pseudo@gmail.com' })
   @IsEmail()
   mail: string;
+
+  //refreshToken: string;
 }

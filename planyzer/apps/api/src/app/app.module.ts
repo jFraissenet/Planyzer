@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { AuthModule } from './auth/auth.module';
+
 import { UserModule } from './user/user.module';
 import { FeatureModule } from './feature/feature.module';
 import { ProjectModule } from './project/project.module';
@@ -31,6 +33,7 @@ import { UserProjectFeatureModule } from './userprojectfeature/userprojectfeatur
     FeatureModule,
     ProjectFeatureModule,
     UserProjectFeatureModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

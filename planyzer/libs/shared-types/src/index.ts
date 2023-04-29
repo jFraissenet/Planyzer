@@ -6,3 +6,4 @@ export * from './lib/projecttype';
 export * from './lib/feature';
 export * from './lib/projectfeature';
 export * from './lib/userprojectfeature';
+export * from './lib/auth';
